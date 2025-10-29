@@ -1,0 +1,55 @@
+app.js:
+
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [color, setColor] = useState("");
+
+  const handleClick = (selectedColor) => {
+    setColor(selectedColor);
+  };
+
+  return (
+    <div>
+      <h1>{color ? `You selected ${color}` : "Choose a color"}</h1>
+      <button onClick={() => handleClick("Red")}>Red</button>
+      <button onClick={() => handleClick("Blue")}>Blue</button>
+      <button onClick={() => handleClick("Green")}>Green</button>
+      <button onClick={() => handleClick("Yellow")}>Yellow</button>
+    </div>
+  );
+}
+
+export default App;
+
+app.css:
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+button:nth-child(2) { background-color: #dc2626; }
+button:nth-child(3) { background-color: #2563eb; }
+button:nth-child(4) { background-color: #16a34a; }
+button:nth-child(5) { background-color: #d19616; }
+
+button:hover {
+  opacity: 0.8;
+}
