@@ -1,0 +1,1099 @@
+1)	Create	a	class	Employee	that	demonstrates	constructor overloading: Data members: empId, empName, salary
+Constructors:
+No-argument constructor (initialize with default values) Two-argument constructor (empId, empName)
+Three-argument constructor (empId, empName, salary)
+A method display() to print employee details.
+Create another class MathOperations with overloaded methods: multiply(int a, int b) → product of two integers multiply(double a, double b) → product of two decimals multiply(int a, int b, int c) → product of three integers
+In the main() method:
+Create multiple Employee objects using different constructors Call different multiply() methods with different parameters
+Ans) class Employee {
+    private int empId;
+    private String empName;
+    private double salary;
+    public Employee() {
+        this.empId = 0;
+        this.empName = "Unknown";
+        this.salary = 0.0;
+    }
+    public Employee(int empId, String empName) {
+        this.empId = empId;
+        this.empName = empName;
+        this.salary = 0.0;
+    }
+    public Employee(int empId, String empName, double salary) {
+        this.empId = empId;
+-------0000
+        this.salary = salary;
+    }
+    public void display() {
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Salary: " + salary);
+        System.out.println("-----------------------------");
+    }
+}
+class MathOperations {
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+    public static double multiply(double a, double b) {
+        return a * b;
+    }
+    public static int multiply(int a, int b, int c) {
+        return a * b * c;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Employee e1 = new Employee();
+        Employee e2 = new Employee(101, "Alice");
+        Employee e3 = new Employee(102, "Bob", 75000.0);
+        System.out.println("Employee Details:");
+        e1.display();
+        e2.display();
+        e3.display();
+        System.out.println("Math Operations:");
+        System.out.println("Product of 5 and 3 (integers): " + MathOperations.multiply(5, 3));
+        System.out.println("Product of 2.5 and 4.0 (doubles): " + MathOperations.multiply(2.5, 4.0));
+        System.out.println("Product of 2, 3, and 4 (integers): " + MathOperations.multiply(2, 3, 4));
+    }
+}
+2)	Create a class named Student that has fields for an ID number, number of credit hours earned, and number of points earned. (For example, many schools compute grade point averages based on a scale of 4, so a three-credit-hour class in which a student earns an A is worth 12 points.)
+Include methods to assign values to all fields. A Student also has a field for grade point average. Include a method to compute the grade point average field by dividing points by credit hours earned. (i.e. grade_point_average = points/credit_hours)
+Write methods to display the values in each Student field. Save this class as Student.java.
+-	Write a class named ShowStudent that instantiates a Student object from the class you created and assign values to its fields. Compute the Student grade point average, and then display all the values associated with the Student. Save the application as ShowStudent.java.
+-	Create a constructor for the Student class you created. The constructor should initialize each Student’s ID number to 9999, his or her points earned to 12, and credit hours to 3 (resulting in a grade point average of 4.0). Write a program that demonstrates that the constructor works by instantiating an object and displaying the initial values. Save the application as ShowStudent2.java.
+Ans) public class Student {
+    private int id;
+    private int creditHours;
+    private int points;
+    private double gpa;
+    public Student() {
+        this.id = 9999;
+        this.points = 12;
+        this.creditHours = 3;
+        this.gpa = (double) this.points / this.creditHours;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setCreditHours(int creditHours) {
+        this.creditHours = creditHours;
+    }
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    public void computeGPA() {
+        this.gpa = (double) this.points / this.creditHours;
+    }
+    public void displayId() {
+        System.out.println("ID: " + id);
+    }
+    public void displayCreditHours() {
+        System.out.println("Credit Hours: " + creditHours);
+    }
+    public void displayPoints() {
+        System.out.println("Points: " + points);
+    }
+    public void displayGPA() {
+        System.out.println("GPA: " + gpa);
+    }
+}
+class ShowStudent {
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.setId(12345);
+        student.setCreditHours(15);
+        student.setPoints(45);
+        student.computeGPA();
+        student.displayId();
+        student.displayCreditHours();
+        student.displayPoints();
+        student.displayGPA();
+    }
+}
+class ShowStudent2 {
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.displayId();
+        student.displayCreditHours();
+        student.displayPoints();
+        student.displayGPA();
+    }
+}
+3)	To encourage good grades, Hermosa High School has decided to award each student a bookstore credit that is 10 times the student’s grade point average. In other words, a student with a 3.2 grade point average receives a $32 credit.
+Create a class that prompts a student for a name and grade point average, and then passes the values to a method that displays a descriptive message. The message uses the student’s name, echoes the grade point average, and computes and displays the credit. Save the application as BookstoreCredit.java.
+Ans) import java.util.Scanner;
+public class BookstoreCredit {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter student name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter grade point average: ");
+        double gpa = scanner.nextDouble();
+        displayCredit(name, gpa);
+    }
+    public static void displayCredit(String name, double gpa) {
+        double credit = gpa * 10;
+        System.out.println("Student: " + name);
+        System.out.println("GPA: " + gpa);
+        System.out.println("Bookstore Credit: $" + credit);
+    }
+}
+4)	Create a class named Billing that includes three overloaded computeBill() methods for a photo book store.
+•	When computeBill() receives a single parameter, it represents the price of one photo book
+ordered. Add 8% tax, and return the total due.
+•	When computeBill() receives two parameters, they represent the price of a photo book and
+the quantity ordered. Multiply the two values, add 8% tax, and return the total due.
+•	When computeBill() receives three parameters, they represent the price of a photo book, the quantity ordered, and a coupon value. Multiply the quantity and price, reduce the result by the coupon value, and then add 8% tax and return the total due.
+Write a main() method that tests all three overloaded methods. Save the application as Billing.java
+Ans) public class Billing {
+    public static double computeBill(double price) {
+        return price * 1.08;
+    }
+    public static double computeBill(double price, int quantity) {
+        return (price * quantity) * 1.08;
+    }
+    public static double computeBill(double price, int quantity, double coupon) {
+        return ((price * quantity) - coupon) * 1.08;
+    }
+    public static void main(String[] args) {
+        System.out.println("Total for one book at $10: $" + computeBill(10.0));
+        System.out.println("Total for 2 books at $10 each: $" + computeBill(10.0, 2));
+        System.out.println("Total for 2 books at $10 each with $5 coupon: $" + computeBill(10.0, 2, 5.0));
+    }
+}
+
+5)	Create a class named FormLetterWriter that includes two overloaded methods named displaySalutation().
+The first method takes one String parameter that represents a customer’s last name, and it
+displays the salutation Dear Mr. or Ms. followed by the last name.
+The second method accepts two String parameters that represent a first and last name, and it displays the greeting Dear followed by the first name, a space, and the last name. After each salutation, display the rest of a short business letter: Thank you for your recent order.
+Write a main() method that tests each overloaded method. Save the file as FormLetterWriter.java.
+Ans) public class FormLetterWriter {
+    public static void displaySalutation(String lastName) {
+        System.out.println("Dear Mr. or Ms. " + lastName);
+        System.out.println("Thank you for your recent order.");
+    }
+    public static void displaySalutation(String firstName, String lastName) {
+        System.out.println("Dear " + firstName + " " + lastName);
+        System.out.println("Thank you for your recent order.");
+    }
+    public static void main(String[] args) {
+        displaySalutation("Smith");
+        displaySalutation("John", "Doe");
+    }
+}
+6)	Write an application that throws and catches an ArithmeticException when you attempt to take the square root of a negative value. Prompt the user for an input value and try the Math.sqrt() method on it. The application either displays the square root or catches the thrown Exception and displays an appropriate message. Save the file as SqrtException.java.
+Ans) 
+import java.util.Scanner;
+public class SqrtException {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        double num = scanner.nextDouble();
+        try {
+            if (num < 0) {
+                throw new ArithmeticException("Cannot take square root of negative number");
+            }
+            System.out.println("Square root: " + Math.sqrt(num));
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+7)	Create a class named CollegeCourse that includes data fields that hold the department (for example, ENG), the course number (for example, 101), the credits (for example, 3), and the fee for the course (for example, $360).
+All of the fields are required as arguments to the constructor, except for the fee, which is calculated at $120 per credit hour. Include a display() method that displays the course data.
+Create a subclass named LabCourse that adds $50 to the course fee. Override the parent class display() method to indicate that the course is a lab course and to display all the data.
+Write an application named UseCourse that prompts the user for course information. If the user enters a class in any of the following departments, create a LabCourse: BIO, CHM, CIS, or PHY.
+If the user enters any other department, create a CollegeCourse that does not include the lab fee. Then display the course data.
+Save the files as CollegeCourse.java, LabCourse.java, and UseCourse.java.
+Ans) public class CollegeCourse {
+    protected String department;
+    protected int courseNumber;
+    protected int credits;
+    protected double fee;
+
+    // Constructor
+    public CollegeCourse(String department, int courseNumber, int credits) {
+        this.department = department;
+        this.courseNumber = courseNumber;
+        this.credits = credits;
+        this.fee = credits * 120; // $120 per credit hour
+    }
+
+    // Display method
+    public void display() {
+        System.out.println("Department: " + department);
+        System.out.println("Course Number: " + courseNumber);
+        System.out.println("Credits: " + credits);
+        System.out.println("Fee: $" + fee);
+    }
+}
+public class LabCourse extends CollegeCourse {
+
+    // Constructor
+    public LabCourse(String department, int courseNumber, int credits) {
+        super(department, courseNumber, credits);
+        this.fee += 50; // Add $50 lab fee
+    }
+
+    // Overridden display method
+    @Override
+    public void display() {
+        System.out.println("Department: " + department + " (Lab Course)");
+        System.out.println("Course Number: " + courseNumber);
+        System.out.println("Credits: " + credits);
+        System.out.println("Fee (including lab fee): $" + fee);
+    }
+}
+	import java.util.Scanner;
+
+public class UseCourse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Input course details
+        System.out.print("Enter department (e.g., ENG, BIO, CHM, CIS, PHY): ");
+        String dept = input.next().toUpperCase();
+
+        System.out.print("Enter course number: ");
+        int number = input.nextInt();
+
+        System.out.print("Enter number of credits: ");
+        int credits = input.nextInt();
+
+        CollegeCourse course;
+
+        // Determine if it's a lab course
+        if (dept.equals("BIO") || dept.equals("CHM") || dept.equals("CIS") || dept.equals("PHY")) {
+            course = new LabCourse(dept, number, credits);
+        } else {
+            course = new CollegeCourse(dept, number, credits);
+        }
+
+        System.out.println("\nCourse Details:");
+        course.display();
+    }
+}
+
+8)	Create a class named Poem that contains fields for the name of the poem and the number of lines in it. Include a constructor that requires values for both fields. Also include get methods to retrieve field values.
+Create three subclasses: Couplet, Limerick, and Haiku. The constructor for each subclass requires only a title; the lines field is set using a constant value.
+A couplet has two lines, a limerick has five lines, and a haiku has three lines.
+Create an application that demonstrates usage of an object of each type. Save the files as Poem.java, Couplet.java, Limerick.java, Haiku.java, and DemoPoems.java.
+Ans) 
+public class Poem {
+    private String name;
+    private int lines;
+
+    // Constructor
+    public Poem(String name, int lines) {
+        this.name = name;
+        this.lines = lines;
+    }
+
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+
+    public int getLines() {
+        return lines;
+    }
+}
+
+public class Couplet extends Poem {
+    private static final int LINES = 2;
+
+    // Constructor
+    public Couplet(String name) {
+        super(name, LINES);
+    }
+}
+
+
+public class Limerick extends Poem {
+    private static final int LINES = 5;
+
+    // Constructor
+    public Limerick(String name) {
+        super(name, LINES);
+    }
+}
+
+public class Haiku extends Poem {
+    private static final int LINES = 3;
+
+    // Constructor
+    public Haiku(String name) {
+        super(name, LINES);
+    }
+}
+public class DemoPoems {
+    public static void main(String[] args) {
+        // Create one object of each type
+        Poem couplet = new Couplet("Silent Moon");
+        Poem limerick = new Limerick("There Once Was a Cat");
+        Poem haiku = new Haiku("Autumn Breeze");
+
+        // Display the results
+        displayPoem(couplet);
+        displayPoem(limerick);
+        displayPoem(haiku);
+    }
+
+    // Helper method to display poem details
+    public static void displayPoem(Poem poem) {
+        System.out.println("Poem Title: " + poem.getName());
+        System.out.println("Number of Lines: " + poem.getLines());
+        System.out.println();
+    }
+}
+9)	Create a servlet program that greets a user by name. Sample Input and Output.
+
+Ans) index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting Form</title>
+</head>
+<body>
+    <form action="Hello" method="get">
+        <label>If you don't mind me asking, what is your name?</label>
+        <input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+Hello.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class Hello extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String name = request.getParameter("name");
+        if (name == null || name.trim().isEmpty()) {
+            name = "Guest";
+        }
+
+        out.println("<html><body>");
+        out.println("<h2>Hello, " + name + "</h2>");
+        out.println("</body></html>");
+    }
+}
+
+Web.xml
+
+<web-app>
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>Hello</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/Hello</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+
+10)	Write a JSP program to display current date and time.
+Ans) currentDateTime.jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Current Date and Time</title>
+</head>
+<body>
+    <h2>Current Date and Time</h2>
+    <%
+        java.util.Date currentDate = new java.util.Date();
+        out.println("Current Date and Time: " + currentDate.toString());
+    %>
+</body>
+</html>
+
+11)	Develop a web application that accepts user details such as name, birth date, email address, and lucky number through an HTML form. The form should submit data to a JSP page using the POST method, where the server retrieves the input values using the request.getParameter() method. The application must also demonstrate simple data type handling by converting the lucky number into an integer before processing. Finally, the JSP page should dynamically display the collected information in a structured format on the browser.
+
+
+
+After clicking Submit button output should be
+
+
+Ans) userinfo.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<body>
+    <form action="userinfo.jsp" method="post">
+        <p>
+            Name:
+            <input type="text" name="name" required>
+        </p>
+
+        <p>
+            Birth Date:
+            <input type="date" name="birthDate" required>
+            (Use format yyyy-mm-dd)
+        </p>
+
+        <p>
+            Email Address:
+            <input type="email" name="email" required>
+            (Use format name@company.com)
+        </p>
+
+        <p>
+            Lucky Number:
+            <input type="number" name="lucky" required>
+            (Digits only)
+        </p>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+userinfo.jsp
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>User Information</title>
+</head>
+<body>
+    <%
+        // Retrieve input parameters
+        String name = request.getParameter("name");
+        String birthDate = request.getParameter("birthDate");
+        String email = request.getParameter("email");
+        String luckyStr = request.getParameter("lucky");
+
+        // Convert lucky number from String to int
+        int luckyNumber = 0;
+        try {
+            luckyNumber = Integer.parseInt(luckyStr);
+        } catch (NumberFormatException e) {
+            luckyNumber = -1; // Invalid input indicator
+        }
+    %>
+
+    <h2>User Details</h2>
+    <ul>
+        <li><b>Name :</b> <%= name %></li>
+        <li><b>BirthDate :</b> <%= birthDate %></li>
+        <li><b>EMail :</b> <%= email %></li>
+        <li><b>Lucky :</b> <%= luckyNumber %></li>
+    </ul>
+</body>
+</html>
+11) Create an application that shows a new motivational or funny quote every time a button is clicked.
+HTML:
+A <p> tag to display the quote (no <div> container required). A button labeled "New Quote" to generate a new quote.
+CSS:
+Center the text on the page.
+Style the button with padding, font-size, and cursor pointer.
+Optionally, change the color of the quote dynamically with each new quote.
+JavaScript:
+Store at least 5–10 quotes in an array. Write a function that:
+Picks a random quote from the array.
+Updates the <p> tag with the new quote when the button is clicked.
+Optionally changes the quote’s text color randomly.
+
+Ans) index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p id="quote">Click the button to see a quote!</p>
+    <button id="newQuoteBtn">New Quote</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+style.css
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin-top: 150px;
+}
+
+p {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+button {
+    margin-top: 25px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+script.js
+const quotes = [
+    "Believe you can and you're halfway there.",
+    "I'm not lazy, I'm on energy-saving mode.",
+    "Discipline beats motivation.",
+    "Do something today that your future self will thank you for.",
+    "I used to think I was indecisive, but now I'm not so sure.",
+    "Push yourself, because no one else is going to do it for you.",
+    "My bed is a magical place where I suddenly remember everything I forgot to do.",
+    "Don't wish for it — work for it.",
+    "Success is 1% inspiration and 99% perspiration.",
+    "Be stronger than your excuses."
+];
+
+const quoteElement = document.getElementById("quote");
+const button = document.getElementById("newQuoteBtn");
+
+button.addEventListener("click", () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteElement.textContent = quotes[randomIndex];
+
+    // Optional: change text color randomly
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    quoteElement.style.color = randomColor;
+});
+12)	Create an application that shows To-Do List
+1.	HTML Structure:
+○	Input field for new tasks.
+○	"Add Task" button.
+○	Unordered list to display tasks.
+2.	CSS Styling:
+○	Style the input field, button, and list.
+○	Differentiate completed tasks with a line-through effect.
+3.	JavaScript Functionality:
+○	Handle adding new tasks.
+○	Handle removing tasks.
+○	Toggle completion status on task click.
+
+Ans) index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>My To-Do List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button id="addTaskBtn">Add Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+style.css
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin-top: 80px;
+}
+
+h2 {
+    color: #333;
+}
+
+input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+li {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}
+script.js
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+
+// Add new task
+addTaskBtn.addEventListener("click", () => {
+    const taskText = taskInput.value.trim();
+    if (taskText === "") return;
+
+    const li = document.createElement("li");
+    li.textContent = taskText;
+
+    // Toggle completion on click
+    li.addEventListener("click", () => {
+        li.classList.toggle("completed");
+    });
+
+    // Create remove button
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.classList.add("remove-btn");
+    removeBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent toggling when clicking remove
+        taskList.removeChild(li);
+    });
+
+    li.appendChild(removeBtn);
+    taskList.appendChild(li);
+
+    taskInput.value = ""; // Clear input
+});
+
+13)	Develop a JavaScript program to validate an email address and display error messages for incorrect formats
+Ans) index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Static Website</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Static Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Hello, Dear Students!</h2>
+            <p>This is a sample static website built using HTML, CSS, and JavaScript.</p>
+
+            <button onclick="showMessage()">Click Me</button>
+            <p id="message"></p>
+
+            <h3>Subscribe to our Newsletter</h3>
+            <input type="text" id="email" placeholder="Enter your email" />
+            <button onclick="validateEmail()">Submit</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>FULL STACK JAVA PROGRAMS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+Style.css
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #007acc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #eee;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+Script.js
+function showMessage() {
+    const message = document.getElementById("message");
+    message.textContent = "Thank you for clicking! Enjoy browsing.";
+}
+
+function validateEmail() {
+    const emailInput = document.getElementById("email");
+    const email = emailInput.value.trim();
+
+    // Simple validation check
+    if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        alert("Invalid email address. Please include '@' and '.' characters.");
+        emailInput.focus();
+        return false;
+    } else {
+        alert("Thank you for subscribing!");
+        return true;
+    }
+}
+
+14)	The bakery sells donuts at a fixed price per piece. Write a JavaScript program to calculate the subtotal cost of donuts based on user input. If the user specifies the quantity as a “dozen”, the program should automatically convert it to 12 donuts. Otherwise, it should use the number entered directly.
+
+Example Input/Output:
+●	Input 1: Quantity = dozen, Price = 10 Output: Subtotal = 120
+●	Input 2: Quantity = 5, Price = 10 Output: Subtotal = 50
+
+Ans) index.html 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Donut Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Bakery Donut Price Calculator</h2>
+
+    <label>Enter Quantity (number or "dozen"):</label>
+    <input type="text" id="quantity" placeholder="e.g., 5 or dozen"><br><br>
+
+    <label>Enter Price per Donut:</label>
+    <input type="number" id="price" placeholder="e.g., 10"><br><br>
+
+    <button onclick="calculateSubtotal()">Calculate Subtotal</button>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+Style.css
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    color: #333;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+Script.js
+
+function calculateSubtotal() {
+    const quantityInput = document.getElementById("quantity").value.trim();
+    const priceInput = parseFloat(document.getElementById("price").value);
+    const result = document.getElementById("result");
+
+    if (isNaN(priceInput) || priceInput <= 0) {
+        result.textContent = "Please enter a valid price.";
+        result.style.color = "red";
+        return;
+    }
+
+    let quantity;
+
+    // Convert 'dozen' to 12
+    if (quantityInput.toLowerCase() === "dozen") {
+        quantity = 12;
+    } else {
+        quantity = parseInt(quantityInput);
+    }
+
+    if (isNaN(quantity) || quantity <= 0) {
+        result.textContent = "Please enter a valid quantity.";
+        result.style.color = "red";
+        return;
+    }
+
+    const subtotal = quantity * priceInput;
+    result.textContent = `Subtotal = ${subtotal}`;
+    result.style.color = "green";
+}
+
+
+15)	Write a JavaScript function areAnagrams(str1, str2) that checks whether two given strings are anagrams of each other. Two strings are considered anagrams if they contain the same characters with the same frequency, but possibly in a different order. The function should return true if the strings are anagrams, and false otherwise.
+Example:
+areAnagrams("listen", "silent"); // true areAnagrams("hello", "world"); // false
+Ans) index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram Checker</title>
+</head>
+<body>
+    <h2>Anagram Checker</h2>
+
+    <label>Enter First String:</label>
+    <input type="text" id="str1" placeholder="e.g. listen"><br><br>
+
+    <label>Enter Second String:</label>
+    <input type="text" id="str2" placeholder="e.g. silent"><br><br>
+
+    <button onclick="checkAnagram()">Check</button>
+
+    <p id="result"></p>
+
+    <!-- Link external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+Script.js
+// Function to check if two strings are anagrams
+function areAnagrams(str1, str2) {
+    // Remove spaces and convert to lowercase
+    str1 = str1.replace(/\s+/g, '').toLowerCase();
+    str2 = str2.replace(/\s+/g, '').toLowerCase();
+
+    // If lengths differ, they cannot be anagrams
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    // Sort and compare
+    const sortedStr1 = str1.split('').sort().join('');
+    const sortedStr2 = str2.split('').sort().join('');
+
+    return sortedStr1 === sortedStr2;
+}
+
+// Function to handle button click
+function checkAnagram() {
+    const s1 = document.getElementById("str1").value;
+    const s2 = document.getElementById("str2").value;
+    const result = document.getElementById("result");
+
+    if (areAnagrams(s1, s2)) {
+        result.textContent = "✅ They are anagrams!";
+    } else {
+        result.textContent = "❌ Not anagrams.";
+    }
+}
+
+16)	Write a program that uses console.log to print all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, print "Fizz" instead of the number, and for numbers divisible by 5 (and not 3), print "Buzz" instead.
+Ans) for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0) {
+        console.log("Fizz");
+    } else if (i % 5 === 0) {
+        console.log("Buzz");
+    } else {
+        console.log(i);
+    }
+}
+Write a JavaScript function called isPrime that takes a number as input and returns true if the number is prime, and false otherwise.
+Then, write code that prints all prime numbers between 1 and 50. Run both the programs in Browser console.
+
+// Function to check if a number is prime
+function isPrime(number) {
+    if (number <= 1) return false; // 0 and 1 are not prime
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Print all prime numbers from 1 to 50
+console.log("Prime numbers between 1 and 50:");
+for (let n = 1; n <= 50; n++) {
+    if (isPrime(n)) {
+        console.log(n);
+    }
+}
+
+17)	Create a React functional component that renders four buttons labeled Red, Blue, Green, and Yellow. When the user clicks any button, the application should update state and display a message indicating which color was selected (for example: “You selected Red”). Use Hooks for state and event handlers for the button click
+
+Ans) import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [color, setColor] = useState("");
+
+  const handleClick = (selectedColor) => {
+    setColor(selectedColor);
+  };
+
+  return (
+
+      <h1>{color ? `You selected ${color}` : "Choose a color"}</h1>
+      <button onClick={() => handleClick("Red")}>Red</button>
+      <button onClick={() => handleClick("Blue")}>Blue</button>
+      <button onClick={() => handleClick("Green")}>Green</button>
+      <button onClick={() => handleClick("Yellow")}>Yellow</button>
+    </div>
+  );
+}
+
+export default App;
+
+18)	Create a React application that allows the user to increase or decrease a counter by clicking buttons. The app should display the current count and update it dynamically with each click, demonstrating the use of state management and event handling in React.
+Ans) import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const increase = () => setCount(count + 1);
+  const decrease = () => setCount(count - 1);
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+    </div>
+  );
+}
+
+export default App;

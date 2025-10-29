@@ -1,0 +1,73 @@
+BOTH FILE INSIDE SAMPLE FOLDER
+
+userinfo.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<body>
+    <form action="userinfo.jsp" method="post">
+        <p>
+            Name:
+            <input type="text" name="name" required>
+        </p>
+
+        <p>
+            Birth Date:
+            <input type="date" name="birthDate" required>
+            (Use format yyyy-mm-dd)
+        </p>
+
+        <p>
+            Email Address:
+            <input type="email" name="email" required>
+            (Use format name@company.com)
+        </p>
+
+        <p>
+            Lucky Number:
+            <input type="number" name="lucky" required>
+            (Digits only)
+        </p>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+userinfo.jsp:
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>User Information</title>
+</head>
+<body>
+    <%
+        // Retrieve input parameters
+        String name = request.getParameter("name");
+        String birthDate = request.getParameter("birthDate");
+        String email = request.getParameter("email");
+        String luckyStr = request.getParameter("lucky");
+
+        // Convert lucky number from String to int
+        int luckyNumber = 0;
+        try {
+            luckyNumber = Integer.parseInt(luckyStr);
+        } catch (NumberFormatException e) {
+            luckyNumber = -1; // Invalid input indicator
+        }
+    %>
+
+    <h2>User Details</h2>
+    <ul>
+        <li><b>Name :</b> <%= name %></li>
+        <li><b>BirthDate :</b> <%= birthDate %></li>
+        <li><b>EMail :</b> <%= email %></li>
+        <li><b>Lucky :</b> <%= luckyNumber %></li>
+    </ul>
+</body>
+</html>
